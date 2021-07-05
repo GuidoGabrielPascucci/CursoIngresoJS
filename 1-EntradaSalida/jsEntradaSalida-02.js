@@ -1,12 +1,19 @@
 /*
-Debemos lograr tomar un nombre con 'prompt' 
-y luego mostrarlo por 'alert' al presionar el botón  'mostrar'*/
+Autor: 		Pascucci, Guido Gabriel
+Enunciado: 	Al presionar el botón 'Mostrar' debemos lograr tomar un dato por '=prompt()'y luego mostrarlo por 'alert()'.*/
+
 function mostrar()
+
 {
-	let nombre;
+	var nombre; 
+	var mensajeSalida;
+	
+	nombre = prompt("Ingresa tu nombre");
 
- 	nombre = prompt("Ingrese su nombre"); 
+	mensajeSalida= "Usted se llama "+nombre
 
-	alert(nombre);
+	alert(mensajeSalida);
+	
+
 }
 
