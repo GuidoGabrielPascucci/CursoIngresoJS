@@ -10,7 +10,7 @@ function mostrar()
 	
 	nombre = prompt("Ingresa tu nombre");
 
-	mensajeSalida= "Usted se llama "+nombre
+	mensajeSalida= "Usted se llama "+nombre;
 
 	alert(mensajeSalida);
 	
