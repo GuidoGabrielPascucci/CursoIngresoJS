@@ -18,6 +18,10 @@ function mostrar()
 	mensaje=mensaje+edad;
 	mensaje=mensaje+" años";
 
+
+//	alert(`Usted se llama ${nombre} y tiene ${edad} años`);
+
+
 	alert(mensaje);
 }
 
