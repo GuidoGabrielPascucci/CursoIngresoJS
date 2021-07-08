@@ -44,3 +44,5 @@ Enunciado: 	Ejercicio 10bis
 
 	document.getElementById('txtIdResultado').value=resultado;
 }
+
+//esto es un comentario
