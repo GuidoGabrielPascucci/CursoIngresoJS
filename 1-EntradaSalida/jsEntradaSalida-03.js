@@ -14,8 +14,6 @@ function mostrar()
 
 	alert(mensajeSalida);
 
-	document.getElementById('txtIdNombre').value="";
 
 }
-
 
