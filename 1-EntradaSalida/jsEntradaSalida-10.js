@@ -14,9 +14,10 @@ function mostrarAumento()
 	importe=document.getElementById('txtIdImporte').value;
 	importe=parseInt(importe);
 
-	descuento=importe*25/100
-	resultado=importe-descuento
-
+	descuento=importe*25/100 (tambien puede ser importe*0.25);
+	resultado=importe*0.75 /// si fuese aumento seria resultado=importe*1.25;
+	
+	resultado=importe-descuento;
 	document.getElementById('txtIdResultado').value=resultado;
 }
 
@@ -46,3 +47,14 @@ Enunciado: 	Ejercicio 10bis
 }
 
 //esto es un comentario
+
+
+/*
+Salidas ---> orientados al usuario
+	id
+	document.write
+	alert
+	------------------
+	console.log ---> orientado al programador.
+
+*/
