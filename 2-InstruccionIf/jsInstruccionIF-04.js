@@ -6,19 +6,27 @@ Enunciado: 	Al ingresar una edad debemos informar si la persona es adolescente, 
 function mostrar()
 {
 	let edadDelUsuario;
-	let mensajeSalida;
+	let mensajeSalidaMenor;
+	let mensajeSalidaAdolescente;
+	let mensajeSalidaMayor;
 
 	edadDelUsuario=document.getElementById('txtIdEdad').value;
 	edadDelUsuario=parseInt(edadDelUsuario);
-	mensajeSalida="Usuario adolescente";
+	
+	mensajeSalidaMenor="Usuario menor de edad";
+	mensajeSalidaAdolescente="Usuario adolescente";
+	mensajeSalidaMayor="Usuario mayor de edad";
 
-	if(edadDelUsuario<18)
+	if(edadDelUsuario>17)
 	{
-		alert("Usuario menor de edad");
-		if(edadDelUsuario>12)
-		{
-			alert(mensajeSalida);
-		}
+		alert(mensajeSalidaMayor);
 	}
+	else
+		if (edadDelUsuario>12)
+		{
+			alert(mensajeSalidaAdolescente);
+		}
+	else
+		alert(mensajeSalidaMenor);
 	alert("Fin de la función");
-}//FIN DE LA FUNCIÓN
+}

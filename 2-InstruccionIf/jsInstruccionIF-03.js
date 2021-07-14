@@ -19,9 +19,15 @@ function mostrar()
 	{
 		alert(mensajeSalida);
 	}
-	if(edadDelUsuario<18)
+	else
+		if (edadDelUsuario<18) 
+		{
+			alert(mensajeSalida2);
+		}
+/*	if(edadDelUsuario<18)
 	{
 		alert(mensajeSalida2);
 	}
+*/
 	alert("Fin de la función");
 }
