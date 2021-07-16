@@ -1,3 +1,7 @@
+/*
+Autor: 		Pascucci, Guido Gabriel
+Enunciado: 	Al ingresar una edad debemos informar solo si la persona es mayor de edad
+*/
 function mostrar()
 {
 	let edadDelUsuario;
@@ -11,6 +15,6 @@ function mostrar()
 	{
 		alert(mensajeSalida);
 	}
-
+	
 	alert("Fin de la función");
 }

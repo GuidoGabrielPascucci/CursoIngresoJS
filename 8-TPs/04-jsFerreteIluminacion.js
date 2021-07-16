@@ -8,7 +8,81 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  ”Usted pago X de IIBB.”, siendo X el impuesto que se pagó. 
 
  */
+
+/*
+Autor:      Pascucci, Guido Gabriel
+Enunciado:  A. Si compra 6 o más  lamparitas bajo consumo tiene un descuento del 50%.
+*/
 function CalcularPrecio () 
 {
- 	
+    let cantidadLamparas;
+    let precioBruto;
+    let descuento;
+    let precioFinal;
+    let marca;
+
+    cantidadLamparas=document.getElementById('txtIdCantidad').value;
+    cantidadLamparas=parseInt(cantidadLamparas);
+    marca=document.getElementById('Marca').value;
+    precioBruto=cantidadLamparas*35; // Precio por Lámpara = $35
+
+    if(cantidadLamparas>5) // A.
+    {
+        descuento=precioBruto*50/100;
+        precioFinal=precioBruto-descuento;
+        document.getElementById('txtIdprecioDescuento').value=precioFinal;
+    }
+    else
+    {
+        if(cantidadLamparas==5) // B.
+        {
+            if (marca=="ArgentinaLuz")
+            {
+                descuento=precioBruto*40/100;
+                precioFinal=precioBruto-descuento;
+                document.getElementById('txtIdprecioDescuento').value=precioFinal;
+            }
+            else
+            {
+                descuento=precioBruto*30/100;
+                precioFinal=precioBruto-descuento;
+                document.getElementById('txtIdprecioDescuento').value=precioFinal; 
+            }
+        }
+        if(cantidadLamparas==4) // C.
+            if (marca=="ArgentinaLuz"||marca=="FelipeLamparas")
+            {
+                descuento=precioBruto*25/100;
+                precioFinal=precioBruto-descuento;
+                document.getElementById('txtIdprecioDescuento').value=precioFinal;
+            }
+            else
+            {
+                descuento=precioBruto*20/100;
+                precioFinal=precioBruto-descuento;
+                document.getElementById('txtIdprecioDescuento').value=precioFinal;
+            }
+        if(cantidadLamparas==3) // D.
+        {
+            if(marca=="ArgentinaLuz")
+            {
+                descuento=precioBruto*15/100;
+                precioFinal=precioBruto-descuento;
+                document.getElementById('txtIdprecioDescuento').value=precioFinal;
+            }
+            if(marca=="FelipeLamparas")
+            {
+                descuento=precioBruto*10/100;
+                precioFinal=precioBruto-descuento;
+                document.getElementById('txtIdprecioDescuento').value=precioFinal;
+            }
+            else
+            {
+                descuento=precioBruto*5/100;
+                precioFinal=precioBruto-descuento;
+                document.getElementById('txtIdprecioDescuento').value=precioFinal;
+            }
+        }
+    }
+
 }

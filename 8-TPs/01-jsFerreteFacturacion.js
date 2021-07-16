@@ -1,6 +1,6 @@
 /*
 Autor: 		Pascucci, Guido Gabriel
-Enunciado: TP 01 --- Ferrete Facturación (E/S)
+Enunciado: 	TP 01 --- Ferrete Facturación (E/S)
 1.	Para el departamento de facturación:
 A.	Ingresar tres precios de productos y mostrar la suma de los mismos.
 B.	Ingresar tres precios de productos y mostrar el promedio de los mismos.
@@ -53,6 +53,7 @@ function PrecioFinal ()
 	let precioIngresado3;
 	let sumaDePrecios;
 	let precioFinalMasIva;
+	let impuestoValorAgregado;
 
 	precioIngresado1=document.getElementById('txtIdPrecioUno').value;
 	precioIngresado1=parseInt(precioIngresado1);
@@ -64,6 +65,7 @@ function PrecioFinal ()
 	precioIngresado3=parseInt(precioIngresado3);
 
 	sumaDePrecios=precioIngresado1+precioIngresado2+precioIngresado3;
-	precioFinalMasIva=sumaDePrecios*0.21;
+	impuestoValorAgregado=sumaDePrecios*21/100;
+	precioFinalMasIva=sumaDePrecios+impuestoValorAgregado;
 	alert("El precio + IVA = "+precioFinalMasIva);
 }
