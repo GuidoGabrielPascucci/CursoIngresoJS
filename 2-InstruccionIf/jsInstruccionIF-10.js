@@ -1,6 +1,21 @@
 function mostrar()
 {
-	//Genero el número RANDOM entre 1 y 10 
-	alert("ok");
+	var numeroRandom;
+	numeroRandom=Math.floor(Math.random() *10 + 1);
 
-}//FIN DE LA FUNCIÓN
+	if (numeroRandom==9 || numeroRandom==10)
+	{
+		alert(numeroRandom+": EXCELENTE");
+	}
+	else
+	{
+		if (numeroRandom>3)
+		{
+			alert(numeroRandom+": APROBÓ");
+		}
+		else
+		{
+			alert(numeroRandom+": Vamos, la próxima se puede");
+		}
+	}
+}
