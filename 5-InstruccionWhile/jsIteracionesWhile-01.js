@@ -52,6 +52,7 @@ function mostrar()
 
 	*/
 
+	/*
 	var repeticiones;
 	repeticiones=0;
 
@@ -60,4 +61,25 @@ function mostrar()
 		repeticiones=repeticiones+1;
 		console.log(repeticiones);
 	}
+	*/
+
+	var repeticiones;
+	repeticiones=0;
+
+	while(repeticiones<10)
+	{
+		repeticiones++;
+		console.log(repeticiones);
+	}
+
+
+
+
+
+
+
+
+
+
+
 }

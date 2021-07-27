@@ -7,7 +7,7 @@ sumar los que son positivos y multiplicar los negativos.
 
 function mostrar()
 {
-	
+	/*
 	var respuesta;
 	var sumaPositivos;
 	var multiplicacionNegativos;
@@ -35,4 +35,33 @@ function mostrar()
 
 	txtIdSuma.value=sumaPositivos;
 	txtIdProducto.value=multiplicacionNegativos;
+	*/
+
+
+	var numeroIngresado;
+	var sumaDePositivos;
+	var productoDeNegativos;
+	var seguir;
+
+	sumaDePositivos=0;
+	productoDeNegativos=1;
+	seguir="si";
+
+	while(seguir=="si")
+	{
+		numeroIngresado=prompt("Ingrese número");
+		numeroIngresado=parseInt(numeroIngresado);
+		if(numeroIngresado>0)
+		{
+			sumaDePositivos=numeroIngresado+sumaDePositivos;
+		}
+		else
+		{
+			productoDeNegativos=numeroIngresado*productoDeNegativos;
+		}
+		seguir=prompt("¿Quiere seguir pidiendo números?");
+	}
+
+	txtIdSuma.value=sumaDePositivos;
+	txtIdProducto.value=productoDeNegativos;
 }

@@ -7,6 +7,7 @@ e informar la suma acumulada y el promedio.
 
 function mostrar()
 {
+	/*
 	var contador;
 	var acumulador;
 	var respuesta;
@@ -28,4 +29,29 @@ function mostrar()
 
 	txtIdSuma.value=acumulador;
 	txtIdPromedio.value=acumulador/contador;
+	*/
+
+
+	var numeroIngresado;
+	var acumulador;
+	var contador;
+	var seguir;
+	var promedio;
+
+	acumulador=0;
+	contador=0;
+	seguir="si";
+
+	while(seguir=="si")
+	{
+		numeroIngresado=prompt("Ingrese un número");
+		numeroIngresado=parseInt(numeroIngresado);
+		contador++;
+		acumulador=numeroIngresado+acumulador;
+		seguir=prompt("¿Quiere seguir pidiendo números?");
+	}
+
+	promedio=acumulador/contador;
+	txtIdSuma.value=acumulador;
+	txtIdPromedio.value=promedio;
 }

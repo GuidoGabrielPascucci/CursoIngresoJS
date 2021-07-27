@@ -6,6 +6,7 @@ Al presionar el botón pedir un sexo
 */
 function mostrar()
 {
+	/*
 	var sexoIngresado;
 	sexoIngresado=prompt("ingrese f ó m .");
 
@@ -14,4 +15,15 @@ function mostrar()
 		sexoIngresado=prompt("Error. Ingrese Nuevamente");
 	}
 	document.getElementById('txtIdSexo').value=sexoIngresado;
+	*/
+
+
+	var sexoIngresado;
+	sexoIngresado=prompt("Ingrese su sexo.");
+
+	while(sexoIngresado!="f" && sexoIngresado!="m")
+	{
+		sexoIngresado=prompt("Error. Ingrese sexo nuevamente.");
+	}
+	txtIdSexo.value=sexoIngresado;
 }

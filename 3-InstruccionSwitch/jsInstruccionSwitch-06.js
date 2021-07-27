@@ -5,7 +5,7 @@ function mostrar()
 	horaDelDia=parseInt(horaDelDia);
 	
 
-	/*switch(horaDelDia)
+	switch(horaDelDia)
 	{
 		case 7:
 		case 8:
@@ -45,5 +45,4 @@ function mostrar()
 			alert("La hora no existe");
 		break;
 	}
-	*/
 }
