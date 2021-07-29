@@ -11,7 +11,8 @@ hasta que el usuario quiera, y mostrar:
 8-Promedios de negativos.
 9-Diferencia entre positivos y negativos, (positivos-negativos).
 */
-/*function mostrar()
+
+function mostrar()
 {
 	//declarar contadores y variables 
 	
@@ -69,7 +70,7 @@ hasta que el usuario quiera, y mostrar:
 /*
 isNaN(valor) // si es true, no es un numero
 isNaN(valor) // si es false, es un número
-*/
+
 
 var numeroIngresado;
 var sumaNegativos = 0; // 1
@@ -129,4 +130,5 @@ function mostrar() {
 
 	document.write("1- La suma de negativos es: "+sumaNegativos+"<br/> 2- La suma de positivos es: "+sumaPositivos+"<br/> 3- La cantidad de positivos es: "+cantidadPositivos+"<br/> 4-La cantidad de negativos es: "+cantidadNegativos+"<br/> 5 - La cantidad de ceros es: "+cantidadCeros+"<br/> 6-Cantidad de números pares"+ cantidadNumerosPares + "<br/> 7- El promedio de negativos es: "+promedioDeNegativos+"<br/> 8- El promedio de positivos es: "+promedioDePositivos+"<br/> 9- La diferencia de positivos y negativos es: "+diferenciaPositivosNegativos);
 }
+
 
