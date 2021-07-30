@@ -1,139 +1,162 @@
 /*
 Pascucci, Guido Gabriel - Div C
-Enunciado: UNO
+Enunciado:
 
-Debemos realizar la carga de 5 (cinco) productos de prevención de contagio,
-de cada una debo obtener los siguientes datos:
-el tipo (validar "barbijo" , "jabón" o "alcohol"),
-el precio (validar entre 100 y 300),
-la cantidad de unidades (no puede ser 0 o negativo y no debe superar las 1000 unidades),
-la Marca y el fabricante.
+Realizar el algoritmo que permita ingresar los datos de una compra de productos 
+alimenticios, hasta que el cliente quiera. Por cada item  de la compra  se ingresa:<br>
+Tipo: (validar "yerba", "harina", "fideo").<br>
+marca,
+Cantidad de paquetes. (más de cero).<br>
+Precio por paquete (más de cero).<br>
 
-Se debe Informar al usuario lo siguiente:
-a) Del más barato de los alcohol, la cantidad de unidades y el fabricante
-b) Del tipo con mas unidades, el promedio por compra
-c) Cuántas unidades de jabones hay en total
+a)	El importe total a pagar bruto, sin descuento.<br>
+b)	El importe total a pagar con descuento (solo si corresponde)<br>
+Si se compra total tiene  más de 5 paquetes se obtiene un 25% de descuento sobre el total a <br>pagar.<br>
+Si se compra más de 10 paquetes en total se obtiene un 30% de descuento sobre el total a pagar.<br>
+Se pide mostrar por pantalla:<br>
+c)	Informar el tipo con más cantidad de paquetes.<br>
+d)	El tipo , marca y cantidad  de la item mas caro de la compra. (sobre el Bruto sin descuento)<br>
 */
+
 function mostrar()
+
 {
-	var contadorDeProductos;
 	var tipoDeProducto;
-	var precioDeProducto;
-	var cantidadUnidades;
 	var marca;
-	var fabricante;
-	var alcoholMasBarato;
-	var alcoholMasBaratoUnidades;
-	var alcoholMasBaratoFabricante;
-	var alcoholMasBaratoBandera;
-	var acumuladorBarbijo;
-	var acumuladorAlcohol;
-	var acumuladorJabon;
-	var contadorBarbijo;
-	var contadorAlcohol;
-	var contadorJabon;
-	var promedio;
+	var cantidadPaquetes;
+	var precioPorPaquete;
+	var precioBruto;
+	var acumuladorPrecioBruto;
+	var precioFinalConDescuento;
+	var descuento;
+	var acumuladorYerba;
+	var acumuladorHarina;
+	var acumuladorFideo;
+	var tipoProductoMasComprado;
 
-	contadorDeProductos = 0;
-	alcoholMasBaratoBandera = "primero";
-	
-	acumuladorBarbijo = 0;
-	acumuladorAlcohol = 0;
-	acumuladorJabon = 0;
+	var tipoMasCaroBandera;
+	var precioMaximoIngresado;
+	var tipoMasCaro;
+	var marcaMasCara;
+	var cantidadItemMasCaro;
 
-	contadorBarbijo = 0;
-	contadorAlcohol = 0;
-	contadorJabon = 0;
+	var seguirIngresandoProductos;
 
 
-	while (contadorDeProductos < 5)
+	precioFinalConDescuento = " ";
+	acumuladorPrecioBruto = 0;
+
+	acumuladorYerba = 0;
+	acumuladorHarina = 0;
+	acumuladorFideo = 0;
+
+	tipoMasCaroBandera = 1;
+
+	seguirIngresandoProductos = "si";
+
+
+	while (seguirIngresandoProductos == "si")
 	{
-		tipoDeProducto = prompt ("Ingrese tipo de producto");
+		tipoDeProducto = prompt ("Ingrese un producto");
 
-		while (tipoDeProducto != "barbijo" && tipoDeProducto != "jabon" && tipoDeProducto != "alcohol")
+		while (tipoDeProducto != "yerba" && tipoDeProducto != "harina" && tipoDeProducto != "fideo")
 		{
-			tipoDeProducto = prompt ("Error. Ingrese nuevamente tipo de producto");
+			tipoDeProducto = prompt ("Error. Ingrese nuevamente un producto");
 		}
 
-		precioDeProducto = prompt ("Ingrese precio de producto");
-		precioDeProducto = parseInt (precioDeProducto);
+		marca = prompt ("Ingrese una marca");
 
-		while (precioDeProducto < 100 || precioDeProducto > 300) 
+		cantidadPaquetes = prompt ("Ingrese la cantidad de paquetes que necesita");
+		cantidadPaquetes = parseInt (cantidadPaquetes);
+
+		while (cantidadPaquetes < 0 || cantidadPaquetes == 0)
 		{
-			precioDeProducto = prompt ("Error. Ingrese nuevamente precio de producto");
-			precioDeProducto = parseInt (precioDeProducto);
+			cantidadPaquetes = prompt ("Error. Ingrese nuevamente la cantidad de paquetes");
+			cantidadPaquetes = parseInt (cantidadPaquetes);
 		}
 
-		cantidadUnidades = prompt ("Ingrese cantidad de unidades");
-		cantidadUnidades = parseInt (cantidadUnidades);
+		precioPorPaquete = prompt ("Ingrese el precio por paquete");
+		precioPorPaquete = parseInt (precioPorPaquete);
 
-		while (cantidadUnidades == 0 || cantidadUnidades < 0 || cantidadUnidades > 1000)
+		while (precioPorPaquete < 0 || precioPorPaquete == 0)
 		{
-			cantidadUnidades = prompt ("Error. Ingrese nuevamente cantidad de unidades");
-			cantidadUnidades = parseInt (cantidadUnidades);
+			precioPorPaquete = prompt ("Error. Ingrese nuevamente el precio por paquete");
+			precioPorPaquete = parseInt (precioPorPaquete);
 		}
 
-		marca = prompt ("Ingrese marca");
-		fabricante = prompt ("Ingrese fabricante");	
-
-		if (tipoDeProducto == "alcohol") // A
+		switch (tipoDeProducto)
 		{
-			if (alcoholMasBaratoBandera == "primero")
-			{
-				alcoholMasBarato = precioDeProducto;
-				alcoholMasBaratoUnidades = cantidadUnidades;
-				alcoholMasBaratoFabricante = fabricante;
-				alcoholMasBaratoBandera = "segundo";
-			}
-			else
-			{
-				if (precioDeProducto < alcoholMasBarato)
-				{
-					alcoholMasBarato = precioDeProducto;
-					alcoholMasBaratoUnidades = cantidadUnidades;
-					alcoholMasBaratoFabricante = fabricante;
-				}
-			}
+			case "yerba":
+					acumuladorYerba = acumuladorYerba + cantidadPaquetes;
+				break;
+			case "harina":
+					acumuladorHarina = acumuladorHarina + cantidadPaquetes;
+				break;
+			default:
+					acumuladorFideo = acumuladorFideo + cantidadPaquetes;
+				break;
 		}
-		
-		switch (tipoDeProducto) // B
-		{
-		case "barbijo":
-				acumuladorBarbijo = acumuladorBarbijo + cantidadUnidades;
-				contadorBarbijo++
-			break;
-		case "alcohol":
-				acumuladorAlcohol = acumuladorAlcohol + cantidadUnidades;
-				contadorAlcohol++
-			break;
-		case "jabon":
-				acumuladorJabon = acumuladorJabon + cantidadUnidades;
-				contadorJabon++
-			break;
-		}
-		
-		contadorDeProductos++;
-	} // FIN DEL WHILE
 
-
-	if (acumuladorJabon > acumuladorAlcohol && acumuladorJabon > acumuladorBarbijo)
-	{
-		promedio = acumuladorJabon/contadorJabon;
-		tipoDeProducto = "Jabon";
-	}
-	else
-	{
-		if (acumuladorAlcohol > acumuladorJabon && acumuladorAlcohol > acumuladorBarbijo)
+		if (tipoMasCaroBandera == 1)
 		{
-			promedio = acumuladorAlcohol/contadorAlcohol;
-			tipoDeProducto = "Alcohol";
+			precioMaximoIngresado = precioPorPaquete;
+			tipoMasCaro = tipoDeProducto;
+			marcaMasCara = marca;
+			cantidadItemMasCaro = cantidadPaquetes;
+			tipoMasCaroBandera = 0;
 		}
 		else
 		{
-			promedio = acumuladorBarbijo/contadorBarbijo;
-			tipoDeProducto = "Barbijo";
+			if (precioPorPaquete > precioMaximoIngresado)
+			{
+				precioMaximoIngresado = precioPorPaquete;
+				tipoMasCaro = tipoDeProducto;
+				marcaMasCara = marca;
+				cantidadItemMasCaro = cantidadPaquetes;
+			}
+		}
+
+		precioBruto = precioPorPaquete * cantidadPaquetes;
+		acumuladorPrecioBruto = acumuladorPrecioBruto + precioBruto;
+
+		seguirIngresandoProductos = prompt ("¿Desea seguir ingresando productos?");
+	} // FIN DEL WHILE.
+
+	if (cantidadPaquetes > 10)
+	{
+		descuento = acumuladorPrecioBruto * 30 / 100;
+		precioFinalConDescuento = acumuladorPrecioBruto - descuento;
+	}
+	else
+	{
+		if (cantidadPaquetes > 5)
+		{
+			descuento = acumuladorPrecioBruto * 25 / 100;
+			precioFinalConDescuento = acumuladorPrecioBruto - descuento;
 		}
 	}
 
-	document.write ("EJERCICIO A <br/> Alcohol más barato: " + alcoholMasBarato + "<br/> Cantidad de unidades: " + cantidadUnidades + "<br/> Fabricante: " + alcoholMasBaratoFabricante + "<br/> EJERCICIO B <br/> Tipo de producto con más unidades: " + tipoDeProducto + "; Promedio por compra: " + promedio + "<br/> EJERCICIO C <br/> Unidades totales de jabón: " + acumuladorJabon);
+	if (acumuladorYerba > acumuladorHarina && acumuladorYerba > acumuladorFideo)
+	{
+		tipoProductoMasComprado = "Yerba";
+	}
+	else
+	{
+		if (acumuladorHarina > acumuladorFideo)
+		{
+			tipoProductoMasComprado = "Harina";
+		}
+		else
+		{
+			tipoProductoMasComprado = "Fideo";
+		}
+	}
+
+
+	document.write ("Importe total a pagar bruto = " + acumuladorPrecioBruto + "<br/>Importe total a pagar con descuento = " + precioFinalConDescuento + "<br/> Tipo con más cantidad de paquetes = " + tipoProductoMasComprado + "<br/>Tipo, marca y cantidad del item más caro de la compra (en ese orden) = " + tipoMasCaro + "; " + marcaMasCara + "; " + cantidadItemMasCaro);
 }
+
+
+
+
+

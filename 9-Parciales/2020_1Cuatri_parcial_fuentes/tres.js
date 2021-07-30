@@ -1,103 +1,104 @@
 /*
 Pascucci, Guido Gabriel - Div C
-Enunciado: TRES
+Enunciado:
 
-Bienvenidos.
-En el ingreso a un viaje en avion nos solicitan nombre, edad, sexo ("f" o "m") y estado civil ("soltero", "casado" o "viudo") y temperatura corporal.
-a) El nombre de la persona con más temperatura.
-b) Cuantos mayores de edad estan viudos.
-c) La cantidad de hombres que hay solteros o viudos.
-d) Cuantas personas de la tercera edad (más de 60 años), tienen más de 38° de temperatura.
-e) El promedio de edad entre los hombres solteros.
+Luego de la campaña de vacunación “COVID19” se realizó un censo sobre la 
+<br>población para obtener distintos datos estadísticos:<br>
+Se ingresará hasta que usuario decida:<br>
+Nombre.<br>
+Edad.<br>
+Género: “F”, “M”, “NB”.<br>
+Vacuna: “SputnikV”, “AstraZeneca”, “Otra”.<br>
+Temperatura corporal (durante la primera noche).<br>
+Se pide:  <br>
+a) El nombre y vacuna de la persona con mayor temperatura.<br>
+b) Cuántas personas de género Femenino recibieron la vacuna SputnikV.<br>
+c) La cantidad de personas de género No Binario que recibieron AstraZeneca u Otra.<br>
+d) Cuántas personas que se aplicaron la vacuna AstraZeneca, presentaron una temperatura <br>mayor a 38°.<br>
+e) El promedio de edad de los hombres que se aplicaron la vacuna SputnikV y no <br>presentaron fiebre. (37° o menos)<br>
+f) que porcentaje de personas se dieron “Otra” , sobre el total de personas ingresadas
 */
+
 function mostrar()
 {
 	var nombre;
 	var edad;
-	var sexo;
-	var estadoCivil;
+	var genero;
+	var vacuna;
 	var temperaturaCorporal;
-	var agregarPasajero;
+	var seguirIngresando;
 	var temperaturaMaximaBandera;
 	var temperaturaMaxima;
-	var personaConMayorTemperatura; // A - mostrar
-	var contadorViudos; // B - mostrar
-	var contadorSolterosYViudos; // C - mostrar
-	var ancianosConMasDe38; // D - mostrar
-	var contadorSolteros;
-	var acumuladorSolteros;
-	var promedioEdadHombresSolteros; // E - mostrar
+	var personaConMayorTemperatura;
+	var vacunaMayorTemperatura;
+	var contadorSputnikV;
+	var contadorAztraZenecaUOtra;
 
-	agregarPasajero = "si";
 	temperaturaMaximaBandera = 1;
-	contadorViudos = 0;
-	contadorSolterosYViudos = 0;
-	ancianosConMasDe38 = 0;
-	contadorSolteros = 0;
-	acumuladorSolteros = 0;
+	seguirIngresando = "si";
+	contadorSputnikV = 0;
+	contadorAztraZenecaUOtra = 0;
 
-	while (agregarPasajero == "si")
+	while (seguirIngresando == "si")
 	{
-		nombre = prompt ("Ingrese su nombre");
-		
-		edad = prompt ("Ingrese su edad");
-		edad = parseInt (edad);
-		
-		sexo = prompt ("Ingrese su sexo");
+		nombre = prompt ("Ingrese el nombre");
 
-		while (sexo != "f" && sexo != "m")
-		{
-			sexo = prompt ("Error. Ingrese nuevamente su sexo");
-		}
-		
-		estadoCivil = prompt ("Ingrese estado civil");
+    	edad = prompt ("Ingrese edad");
+    	edad = parseInt (edad);
 
-		while (estadoCivil != "soltero" && estadoCivil != "casado" && estadoCivil != "viudo")
-		{
-			estadoCivil = prompt ("Error. Ingrese nuevamente su estado civil");
-		}
-		
-		temperaturaCorporal = prompt ("Ingrese temperatura corporal");
-		temperaturaCorporal = parseInt (temperaturaCorporal);
+    	while (genero != "F" && genero != "M" && genero != "NB")
+    	{
+      		genero = prompt ("Error. Ingrese nuevamente su género");
+    	}
 
-		if (temperaturaMaximaBandera == 1) // A
-		{
-			temperaturaMaxima = temperaturaCorporal;
-			personaConMayorTemperatura = nombre;
-			temperaturaMaximaBandera = 0;
-		}
-		else
-		{
-			if (temperaturaCorporal > temperaturaMaxima)
-			{
-				temperaturaMaxima = temperaturaCorporal;
-				personaConMayorTemperatura = nombre;
-			}
-		}
+    	vacuna = prompt ("Ingrese la vacuna");
 
-		if (edad > 17 && estadoCivil == "viudo") // B
-		{
-			contadorViudos++;
-		}
+    	while (vacuna != "Sputnik V" && vacuna != "AstraZeneca" && vacuna != "Otra")
+    	{
+      		vacuna = prompt ("Error. Ingrese nuevamente la vacuna");
+    	}
 
-		if (sexo == "m" && estadoCivil != "casado") // C
-		{
-			contadorSolterosYViudos++;
-			if (estadoCivil == "soltero") // E
-			{
-				contadorSolteros++;
-				acumuladorSolteros = acumuladorSolteros + edad;
-				promedioEdadHombresSolteros = acumuladorSolteros / contadorSolteros;
-			}
-		}
+    	temperaturaCorporal = prompt ("Ingrese la temperatura corporal");
 
-		if (edad > 60 && temperaturaCorporal > 38) // D
-		{
-			ancianosConMasDe38++;
-		}
+    	if (temperaturaMaximaBandera == 1) // A
+    	{
+    		personaConMayorTemperatura = nombre;
+    		temperaturaMaxima = temperaturaCorporal;
+    		vacunaMayorTemperatura = vacuna;
+    		temperaturaMaximaBandera = 0;
+    	}
+    	else
+    	{
+    		if (temperaturaCorporal > temperaturaMaxima)
+    		{
+    			temperaturaMaxima = temperaturaCorporal;
+    			personaConMayorTemperatura = nombre;
+    			vacunaMayorTemperatura = vacuna;
+    		}
+    	}
 
-		agregarPasajero = prompt ("¿Desea agregar otro pasajero?");
-	}
-
-	document.write ("A- Persona con mayor temperatura: " + personaConMayorTemperatura + "<br/> B- Mayores de edad viudos: " + contadorViudos + "<br/> C- Cantidad de hombres solteros o viudos: " + contadorSolterosYViudos + "<br/> D- Hombres mayores de 60 años con más de 38° de temperatura: " + ancianosConMasDe38 + "<br/> E- Promedio de edad de hombres solteros: " + promedioEdadHombresSolteros);
+    	switch (genero) // B
+    	{
+    		case "F":
+    				contadorSputnikV++;
+    			break;
+    		case "NB":
+    				if (vacuna == "AstraZeneca" || vacuna == "Otra")
+    				{
+    					contadorAztraZenecaUOtra++;
+    				}
+    			break;
+    		default:
+    			break;
+    	}
+	} // FIN DEL WHILE.
 }
+
+/*
+a) El nombre y vacuna de la persona con mayor temperatura.<br>
+b) Cuántas personas de género Femenino recibieron la vacuna SputnikV.<br>
+c) La cantidad de personas de género No Binario que recibieron AstraZeneca u Otra.<br>
+d) Cuántas personas que se aplicaron la vacuna AstraZeneca, presentaron una temperatura <br>mayor a 38°.<br>
+e) El promedio de edad de los hombres que se aplicaron la vacuna SputnikV y no <br>presentaron fiebre. (37° o menos)<br>
+f) que porcentaje de personas se dieron “Otra” , sobre el total de personas ingresadas
+*/

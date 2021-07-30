@@ -1,170 +1,152 @@
 /*
-Pascucci, Guido Gabriel - Div C
-Enunciado: DOS
+Pascucci, Guido Gabriel
+Enunciado: Punto 2
 
-Realizar el algoritmo que permita ingresar los datos de una compra
-productos de la construccion, hasta que el cliente quiera:
-Validar tipo ("arena"; "cal"; "cemento").
-Cantidad de bolsas, Precio por bolsa (más de cero).
-
-Si compro más de 10 bolsas en total tenes 15% de descuento sobre el total a pagar.
-Si compro más de 30 bolsas en total tenes 25% de descuento sobre el total a pagar.
-a) El importe total a pagar , bruto sin descuento y...
-b) el importe total a pagar con descuento(solo si corresponde)
-d) Informar el tipo con mas cantidad de bolsas.
-f) El tipo mas caro.
+Nos dedicamos a la venta exclusiva de Discos rígidos. <br>
+Debemos realizar la carga de 5(cinco) productos, de cada uno debo obtener los <br>
+siguientes datos:<br>
+Tipo: (validar "HDD", "SSD" o "SSDM2")<br>
+Precio: (validar entre 5000 y 18000),<br>
+Cantidad de unidades (no puede ser 0 o negativo y no debe superar las 50 Unidades).<br>
+Marca: (validar “Seagate”, “WD”, “Kingston”)<br>
+Capacidad: (validar 250, 500, 1, 2)<br>
+Se debe Informar al usuario lo siguiente:<br>
+a) Del más barato de los SSD, la cantidad de unidades y marca.<br>
+b) que tipo tiene mas unidades vendidas en total  <br>
+c) Cuántas unidades de HDD hay en total.<br>
+d) el porcentaje que tiene HDD, SSD y SSDM2 sobre el total de unidades compradas.
 */
 
 function mostrar()
 {
-  var tipoDeProducto;
-  var seguirIngresandoProductos;
-  var cantidadBolsas;
-  var precioPorBolsa;
-  
-  var precioBruto;
-  var acumuladorPrecioBruto;
-  var acumuladorBolsas;
-  var precioFinal;
-  var descuento;
-  
-  var contadorArena;
-  var contadorCal;
-  var contadorCemento;
+  var tipoDeDisco;
+  var precioPorDisco;
+  var cantidadUnidades;
+  var marca;
+  var capacidad;
+  var ssdMasBaratoBandera;
+  var ssdMasBarato;
+  var ssdMasBaratoUnidades;
+  var ssdMasBaratoMarca;
+  var acumuladorHDD;
+  var acumuladorSSD;
+  var acumuladorSSDM2;
+  var tipoDeDiscoMasVendido;
+  var totalUnidadesCompradas;
+  var contadorProductos;
+  var porcentajeHDD;
+  var porcentajeSSD;
+  var porcentajeSSDM2;
 
-  var tipoProductoMasComprado;
+  ssdMasBaratoBandera = 1;
 
-  var tipoMasCaroBandera;
-  var precioMaximoIngresado;
-  var tipoMasCaro;
+  acumuladorHDD = 0;
+  acumuladorSSD = 0;
+  acumuladorSSDM2 = 0;
 
-  seguirIngresandoProductos = "si";
-  acumuladorPrecioBruto = 0;
-  acumuladorBolsas = 0;
-  contadorArena = 0;
-  contadorCal = 0;
-  contadorCemento = 0;
-  tipoMasCaroBandera = "1";
+  contadorProductos = 0;
 
-  while (seguirIngresandoProductos == "si")
+  while (contadorProductos < 5)
   {
-    tipoDeProducto = prompt ("Ingrese un nuevo producto");
+    
+    tipoDeDisco = prompt ("Ingrese el tipo de disco");
 
-    while (tipoDeProducto != "arena" && tipoDeProducto != "cal" && tipoDeProducto != "cemento")
+    while (tipoDeDisco != "HDD" && tipoDeDisco != "SSD" && tipoDeDisco != "SSDM2")
     {
-      tipoDeProducto = prompt ("Error. Ingrese nuevamente un producto");
+      tipoDeDisco = prompt ("Error. Ingrese nuevamente tipo de disco");
     }
 
-    cantidadBolsas = prompt ("Ingrese la cantidad de bolsas");
-    cantidadBolsas = parseInt (cantidadBolsas);
-    precioPorBolsa = prompt ("Ingrese el precio por bolsa");
-    precioPorBolsa = parseInt (precioPorBolsa);
+    precioPorDisco = prompt ("Ingrese precio del disco");
+    precioPorDisco = parseInt (precioPorDisco);
 
-    while ((cantidadBolsas < 0 || cantidadBolsas == 0) || (precioPorBolsa < 0 || precioPorBolsa == 0))
+    while (precioPorDisco < 5000 || precioPorDisco > 18000)
     {
-      if (cantidadBolsas < 0 || cantidadBolsas == 0)
+      precioPorDisco = prompt ("Error. Ingrese nuevamente precio del disco");
+      precioPorDisco = parseInt (precioPorDisco);
+    }
+
+    cantidadUnidades = prompt ("Ingrese la cantidad de unidades");
+    cantidadUnidades = parseInt (cantidadUnidades);
+
+    while (cantidadUnidades < 0 || cantidadUnidades == 0 || cantidadUnidades > 50)
+    {
+      cantidadUnidades = prompt ("Error. Ingrese nuevamente la cantidad de unidades");
+      cantidadUnidades = parseInt (cantidadUnidades);
+    }
+
+    marca = prompt ("Ingrese marca");
+
+    while (marca != "Seagate" && marca != "WD" && marca != "Kingston")
+    {
+      marca = prompt ("Error. Ingrese nuevamente la marca");
+    }
+
+    capacidad = prompt ("Ingrese la capacidad");
+    capacidad = parseInt (capacidad);
+
+    while (capacidad != 250 && capacidad != 500 && capacidad != 1 && capacidad != 2)
+    {
+      capacidad = prompt ("Error. Ingrese nuevamente la capacidad");
+      capacidad = parseInt (capacidad);
+    }
+
+    if (tipoDeDisco == "SSD")
+    {
+      if (ssdMasBaratoBandera == 1)
       {
-        cantidadBolsas = prompt ("Error. Ingrese nuevamente la cantidad de bolsas");
+        ssdMasBarato = precioPorDisco;
+        ssdMasBaratoUnidades = cantidadUnidades;
+        ssdMasBaratoMarca = marca;
+        ssdMasBaratoBandera = 0;
       }
       else
       {
-        precioPorBolsa = prompt ("Error. Ingrese nuevamente el precio por bolsa");
+        if (precioPorDisco < ssdMasBarato)
+        {
+          ssdMasBarato = precioPorDisco;
+          ssdMasBaratoUnidades = cantidadUnidades;
+          ssdMasBaratoMarca = marca;
+        }
       }
     }
 
-    switch (tipoDeProducto)
+    switch (tipoDeDisco)
     {
-      case "arena":
-          contadorArena = contadorArena + cantidadBolsas;
-        break;
-      case "cal":
-          contadorCal = contadorCal + cantidadBolsas;
-        break;
-      case "cemento":
-          contadorCemento = contadorCemento + cantidadBolsas;
-        break;
-    }
-    
-    while (seguirIngresandoProductos == "si")
-    {
-      while (tipoMasCaroBandera == "1")
-      {
-        precioMaximoIngresado = precioPorBolsa;
-        if (tipoDeProducto == "arena")
-        {
-          tipoMasCaro = "Arena - el precio más caro es: " + precioMaximoIngresado;
-        }
-        else
-        {
-          if (tipoDeProducto == "cal")
-          {
-            tipoMasCaro = "Cal - el precio más caro es: " + precioMaximoIngresado;
-          }
-          else
-          {
-            tipoDeProducto = "Cemento - el precio más caro es: " + precioMaximoIngresado;
-          }
-        }
-        tipoMasCaroBandera = "0";
-      }
-      if (precioPorBolsa > precioMaximoIngresado)
-      {
-        switch (tipoDeProducto)
-        {
-          case "arena":
-              tipoMasCaro = "Arena - el precio más caro es: " + precioPorBolsa;
-            break;
-          case "cal":
-              tipoMasCaro = "Cal - el precio más caro es: " + precioPorBolsa;
-            break;
-          case "cemento":
-              tipoMasCaro = "Cemento - el precio más caro es: " + precioPorBolsa;
-            break;
-        }
-      }
-      seguirIngresandoProductos = "no";
+      case "HDD":
+              acumuladorHDD = acumuladorHDD + cantidadUnidades;
+          break;
+      case "SSD":
+              acumuladorSSD = acumuladorSSD + cantidadUnidades;
+          break;
+      default:
+              acumuladorSSDM2 = acumuladorSSDM2 + cantidadUnidades;
+          break;
     }
 
-    precioBruto = cantidadBolsas * precioPorBolsa;
-    acumuladorPrecioBruto = acumuladorPrecioBruto + precioBruto;
-    acumuladorBolsas = acumuladorBolsas + cantidadBolsas; 
+    contadorProductos++
+  } // FIN DEL WHILE.
 
-    seguirIngresandoProductos = prompt ("¿Desea seguir ingresando productos?");
-  } // FIN DEL WHILE
-
-  if (acumuladorBolsas > 30) // 25% sobre el total a pagar
+  if (acumuladorHDD > acumuladorSSD && acumuladorHDD > acumuladorSSDM2)
   {
-    descuento = acumuladorPrecioBruto * 25 / 100;
-    precioFinal = acumuladorPrecioBruto - descuento;
+    tipoDeDiscoMasVendido = "HDD";
   }
   else
   {
-    if (acumuladorBolsas > 10) // 15% sobre el total a pagar
+    if (acumuladorSSD > acumuladorSSDM2)
     {
-      descuento = acumuladorPrecioBruto * 15 / 100;
-      precioFinal = acumuladorPrecioBruto - descuento;
+      tipoDeDiscoMasVendido = "SSD";
     }
     else
     {
-      precioFinal = "-";
+      tipoDeDiscoMasVendido = "SSDM2";
     }
   }
 
-  if (contadorArena > contadorCal && contadorArena > contadorCemento)
-  {
-    tipoProductoMasComprado = "Arena";
-  }
-  else
-  {
-    if (contadorCal > contadorCemento)
-    {
-      tipoProductoMasComprado = "Cal";
-    }
-    else
-    {
-      tipoProductoMasComprado = "Cemento";
-    }
-  }
+  totalUnidadesCompradas = acumuladorHDD + acumuladorSSD + acumuladorSSDM2;
 
-  document.write ("A <br/> Importe total a pagar, bruto (sin descuento): " + acumuladorPrecioBruto + "<br/> B <br/> Importe total a pagar (con descuento): " + precioFinal + "<br/> C <br/> Tipo con más cantidad de bolsas: " + tipoProductoMasComprado + "<br/> E <br/> Tipo más caro: " + tipoMasCaro);
+  porcentajeHDD = totalUnidadesCompradas / acumuladorHDD;
+  porcentajeSSD = totalUnidadesCompradas / acumuladorSSD;
+  porcentajeSSDM2 = totalUnidadesCompradas / acumuladorSSDM2;
+
+  document.write ("Del más barato de los SSD, cantidad de unidades = " + ssdMasBaratoUnidades + "; marca = " + ssdMasBaratoMarca + "<br/>Tipo de disco con más unidades vendidas en total = " + tipoDeDiscoMasVendido + "<br/>Unidades totales de HDD = " + acumuladorHDD + "<br/>Porcentaje HDD = " + porcentajeHDD + "; porcentaje SSD = " + porcentajeSSD + "; porcentaje SSDM2 = " + porcentajeSSDM2);
 }
