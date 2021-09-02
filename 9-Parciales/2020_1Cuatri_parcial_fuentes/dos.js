@@ -1,7 +1,123 @@
 /*
 Pascucci, Guido Gabriel
-Enunciado: Punto 2
+Enunciado: 
 
+El dueño de una tienda dedicada a la compra/venta de cartas de Yu-Gi-Oh! desea ingresar en el
+sistema las ventas realizadas en el dia de la fecha y conocer ciertos datos en base a las cartas
+que se vendieron.
+Se ingresara hasta que el usuario decida:
+* Nombre de la carta.
+* Tipo de carta: Validar "monstruo", "magica", "trampa".
+* Rareza: Validar "rara", "super rara", "ultra rara".
+* Precio: Validar que no sea 0 o negativo.
+
+Se pide informar por document.write:
+A) El nombre y rareza de la carta con mayor precio.
+B) Cuantas cartas de tipo "trampa" y de rareza "rara o super rara" fueron vendidas.
+C) El promedio de precio de las cartas de tipo "monstruo" de rareza "ultra rara" con un precio menor a 500.
+*/
+
+function mostrar()
+{
+    var nombreCarta;
+    var tipoCarta;
+    var rareza;
+    var precio;
+    var seguirIngresandoCartas;
+    var cartaMasCara;
+    var cartaMasCaraNombre;
+    var cartaMasCaraRareza;
+    var cartaMasCaraBandera;
+    var contadorCartasTrampa;
+    var contadorRaraYSuperRara;
+    var cantidadCartasPuntoB;
+    var contadorMonstruoUltraRara;
+    var acumuladorPrecioMonstruoUltraRara;
+    var promedio;
+
+    seguirIngresandoCartas = "si";
+    cartaMasCaraBandera = 0;
+    contadorCartasTrampa = 0;
+    contadorRaraOSuperRara = 0;
+    contadorMonstruoUltraRara = 0;
+    acumuladorPrecioMonstruoUltraRara = 0;
+
+    while (seguirIngresandoCartas == "si")
+    {
+      nombreCarta = prompt ("Ingrese el nombre de la carta");
+
+      tipoCarta = prompt ("Ingrese el tipo de carta");
+
+      while (tipoCarta != "monstruo" && tipoCarta != "magica" && tipoCarta != "trampa")
+      {
+        tipoCarta = prompt ("Error. Ingrese nuevamente el tipo de carta");
+      }
+
+      rareza = prompt ("Ingrese Rareza");
+
+      while (rareza != "rara" && rareza != "super rara" && rareza != "ultra rara")
+      {
+        rareza = prompt ("Error. Ingrese nuevamente rareza");
+      }
+
+      precio = prompt ("Ingrese precio");
+      precio = parseInt (precio);
+
+      while (precio < 0 || precio == 0)
+      {
+        precio = prompt ("Error. Ingrese nuevamente el precio");
+        precio = parseInt (precio);
+      }
+
+      if (cartaMasCaraBandera == 0) // A
+      {
+        cartaMasCara = precio;
+        cartaMasCaraNombre = nombreCarta;
+        cartaMasCaraRareza = rareza;
+      }
+      else
+      {
+        if (precio > cartaMasCara)
+        {
+          cartaMasCara = precio;
+          cartaMasCaraNombre = nombreCarta;
+          cartaMasCaraRareza = rareza;
+        }
+      }
+
+      switch (tipoCarta)
+      {
+        case "monstruo":
+            if (rareza == "ultra rara" && precio < 500) // C
+            {
+              contadorMonstruoUltraRara++;
+              acumuladorPrecioMonstruoUltraRara = acumuladorPrecioMonstruoUltraRara + precio;
+            }
+          break;
+        case "magica":
+          break;
+        case "trampa": // B
+            contadorCartasTrampa++;
+            switch (rareza)
+            {
+              case "rara":
+              case "super rara":
+                  contadorRaraOSuperRara++;
+                break;
+            }
+          break;
+      }
+
+      seguirIngresandoCartas = prompt ("¿Desea seguir ingresando cartas?");
+    } // Fin del while
+
+    cantidadCartasPuntoB = contadorCartasTrampa + contadorRaraOSuperRara;
+    promedio = acumuladorPrecioMonstruoUltraRara / contadorMonstruoUltraRara;
+
+    document.write ("A- Nombre y rareza de la carta más cara: " + cartaMasCaraNombre + " - " + cartaMasCaraRareza + "<br/>B- Cartas trampa raras / super raras vendidas: " + cantidadCartasPuntoB + "<br/>C- Promedio de cartas monstruo ultra rara: " + promedio);
+}
+
+/*
 Nos dedicamos a la venta exclusiva de Discos rígidos. <br>
 Debemos realizar la carga de 5(cinco) productos, de cada uno debo obtener los <br>
 siguientes datos:<br>
@@ -15,11 +131,8 @@ a) Del más barato de los SSD, la cantidad de unidades y marca.<br>
 b) que tipo tiene mas unidades vendidas en total  <br>
 c) Cuántas unidades de HDD hay en total.<br>
 d) el porcentaje que tiene HDD, SSD y SSDM2 sobre el total de unidades compradas.
-*/
 
-function mostrar()
-{
-  var tipoDeDisco;
+var tipoDeDisco;
   var precioPorDisco;
   var cantidadUnidades;
   var marca;
@@ -149,4 +262,4 @@ function mostrar()
   porcentajeSSDM2 = totalUnidadesCompradas / acumuladorSSDM2;
 
   document.write ("Del más barato de los SSD, cantidad de unidades = " + ssdMasBaratoUnidades + "; marca = " + ssdMasBaratoMarca + "<br/>Tipo de disco con más unidades vendidas en total = " + tipoDeDiscoMasVendido + "<br/>Unidades totales de HDD = " + acumuladorHDD + "<br/>Porcentaje HDD = " + porcentajeHDD + "; porcentaje SSD = " + porcentajeSSD + "; porcentaje SSDM2 = " + porcentajeSSDM2);
-}
+*/
